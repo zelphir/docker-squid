@@ -56,7 +56,7 @@ RUN cd /usr/src/squid-3.5.27 && \
     chown proxy:adm /var/log/squid && \
     rm -rf /usr/src/squid-3.5.27
 
-EXPOSE 3130
+EXPOSE 3128
 
 ENTRYPOINT [ "/usr/sbin/squid" ]
 
