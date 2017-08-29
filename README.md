@@ -19,7 +19,8 @@ Docker images of Squid.
 
 Supported tags and respective Dockerfile links.
 
-- latest ([Dockerfile][1])
+- 3.5, 3.5.27, latest ([Dockerfile][1])
+- 4.0, 4.0.21 ([Dockerfile][2])
 
 ## Setup
 
@@ -49,7 +50,8 @@ Feel free to contribute on GitHub.
    ╚═(███)═╝
 ```
 
-[1]: https://github.com/rockyluke/docker-squid/blob/master/Dockerfile
+[1]: https://github.com/rockyluke/docker-squid/blob/master/3.5.27/Dockerfile
+[2]: https://github.com/rockyluke/docker-squid/blob/master/4.0.21/Dockerfile
 [license-img]: https://img.shields.io/badge/license-ISC-blue.svg
 [docker-img]: https://img.shields.io/docker/pulls/rockyluke/squid.svg
 [docker-url]: https://registry.hub.docker.com/u/rockyluke/squid
