@@ -46,7 +46,9 @@ RUN cd /usr/src/squid-3.5.27 && \
       --localstatedir=/var \
       --datadir=${prefix}/share/squid \
       --disable-snmp \
-      --disable-ipv6 \
+      --enable-http-violations \
+      --enable-follow-x-forwarded-for \
+      --disable-translation \
       --with-logdir=/var/log/squid \
       --with-pidfile=/var/run/squid.pid \
       --with-default-user=proxy \
