@@ -48,6 +48,7 @@ RUN cd /usr/src/squid-4.0.21 && \
       --disable-snmp \
       --enable-http-violations \
       --enable-follow-x-forwarded-for \
+      --enable-ssl \
       --enable-ssl-crtd \
       --disable-translation \
       --with-logdir=/var/log/squid \
