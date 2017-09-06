@@ -14,7 +14,9 @@
 
 FROM rockyluke/debian:jessie
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    VERSION=3.5.27 \
+    ARCHIVE=v3/3.5/squid-3.5.27.tar.gz
 
 RUN apt-get update  -qq && \
     apt-get upgrade -qq -y && \
@@ -30,14 +32,17 @@ RUN apt-get update  -qq && \
       libssl-dev \
       libtool \
       libtool-bin \
+      squid-langpack \
+      ssl-cert \
       wget && \
     apt-clean
 
-RUN curl -Ls -o /tmp/squid-3.5.27.tar.gz 'http://www.squid-cache.org/Versions/v3/3.5/squid-3.5.27.tar.gz' && \
-    tar -xzf /tmp/squid-3.5.27.tar.gz -C /usr/src && \
-    rm /tmp/squid-3.5.27.tar.gz
+RUN curl -Ls -o /tmp/squid-${VERSION}.tar.gz \
+      "http://www.squid-cache.org/Versions/${ARCHIVE}" && \
+    tar -xzf /tmp/squid-${VERSION}.tar.gz -C /usr/src && \
+    rm /tmp/squid-${VERSION}.tar.gz
 
-RUN cd /usr/src/squid-3.5.27 && \
+RUN cd /usr/src/squid-${VERSION} && \
     ./bootstrap.sh && \
     ./configure \
       --prefix=/usr \
@@ -58,7 +63,11 @@ RUN cd /usr/src/squid-3.5.27 && \
     make all && \
     make install && \
     chown proxy:adm /var/log/squid && \
-    rm -rf /usr/src/squid-3.5.27
+    rm -rf /usr/src/squid-${VERSION}
+
+RUN ln -s /lib/squid/ssl_crtd /bin/ssl_crtd && \
+    /bin/ssl_crtd -c -s /var/lib/ssl_db && \
+    chown -R proxy:proxy /var/lib/ssl_db
 
 EXPOSE 3128
 
