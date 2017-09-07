@@ -65,8 +65,8 @@ RUN cd /usr/src/squid-${VERSION} && \
     chown proxy:adm /var/log/squid && \
     rm -rf /usr/src/squid-${VERSION}
 
-RUN ln -s /lib/squid/ssl_crtd /bin/ssl_crtd && \
-    /bin/ssl_crtd -c -s /var/lib/ssl_db && \
+RUN ln -s /lib/squid/security_file_certgen /bin/security_file_certgen && \
+    /bin/security_file_certgen -c -s /var/lib/ssl_db && \
     chown -R proxy:proxy /var/lib/ssl_db
 
 EXPOSE 3128
